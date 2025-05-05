@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardar en localStorage</title>
+</head>
+<body>
+    <h1>Revisar localStorage en F12</h1>
+
+    <script>
+        function guardarLocalStorage(data) {
+            localStorage.setItem('user', JSON.stringify(data));
+            console.log("Guardado en localStorage:", data);
+        }
+
+        fetch('https://jsonplaceholder.typicode.com/users/2')
+            .then(response => response.json())
+            .then(json => {
+                let usuario = {
+                    name: json.name,
+                    username: json.username,
+                    email: json.email
+                };
+                guardarLocalStorage(usuario);
+            })
+            .catch(error => console.error('Error al obtener usuario:', error));
+    </script>
+</body>
+</html>
